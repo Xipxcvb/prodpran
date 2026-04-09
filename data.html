@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> prodpran </title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    background: radial-gradient(circle at top,#2a0f3a,#0f0618);
+    color:#eee;
+    overflow-x:hidden;
+}
+
+/* glow effect */
+body::before{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    background: radial-gradient(circle,#ff7eb3,transparent);
+    top:-100px;
+    left:-100px;
+    filter: blur(100px);
+    opacity:0.4;
+}
+
+header{
+    text-align:center;
+    padding:100px 20px 60px;
+}
+
+header h1{
+    font-size:52px;
+    color:#ffb3d9;
+    text-shadow:0 0 20px #ff7eb3;
+    letter-spacing:3px;
+}
+
+header p{
+    color:#ccc;
+    margin-top:10px;
+    font-style:italic;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+.card{
+    background: rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    border-radius:25px;
+    padding:25px;
+    margin-bottom:25px;
+    box-shadow:0 0 30px rgba(255,126,179,0.15);
+    transition: all 0.4s ease;
+    opacity:0;
+    transform: translateY(40px);
+}
+
+.card.show{
+    opacity:1;
+    transform: translateY(0);
+}
+
+.card:hover{
+    box-shadow:0 0 40px rgba(255,126,179,0.4);
+    transform: translateY(-5px) scale(1.01);
+}
+
+.profile{
+    text-align:center;
+}
+
+.profile img{
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:15px;
+    border:3px solid #ff7eb3;
+    box-shadow:0 0 20px #ff7eb3;
+}
+
+.profile h2{
+    color:#ffb3d9;
+}
+
+.profile p{
+    color:#ccc;
+}
+
+.game span{
+    display:inline-block;
+    background: linear-gradient(45deg,#ff7eb3,#a855f7);
+    color:white;
+    padding:6px 12px;
+    border-radius:20px;
+    margin:5px;
+    font-size:13px;
+    transition: all 0.3s;
+}
+
+.game span:hover{
+    transform: scale(1.2);
+    box-shadow:0 0 15px #ff7eb3;
+}
+
+.contact p{
+    display:inline-block;
+    background: linear-gradient(45deg,#ff7eb3,#a855f7);
+    color:white;
+    padding:6px 12px;
+    border-radius:20px;
+    margin:5px;
+    font-size:13px;
+    transition: all 0.3s;
+}
+
+.contact p a{
+    color:white;
+    text-decoration:none;
+}
+
+.contact p a:hover{
+    color:white;
+}
+
+.contact p:hover{
+    transform: scale(1.2);
+    box-shadow:0 0 15px #ff7eb3;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#aaa;
+    font-size:14px;
+}
+
+/* floating particles */
+.particle{
+    position:fixed;
+    width:6px;
+    height:6px;
+    background:#ff7eb3;
+    border-radius:50%;
+    opacity:0.6;
+    animation: float 10s infinite linear;
+}
+
+@keyframes float{
+    from{
+        transform: translateY(100vh);
+    }
+    to{
+        transform: translateY(-10vh);
+    }
+}
+
+</style>
+
+</head>
+<body>
+
+<header>
+    <h1>prodpran</h1>
+    <p>"เจอกันได้ที่ THE DEMON BAR"</p>
+</header>
+
+<div class="container">
+
+    <div class="card profile reveal">
+        <img src="https://cdn.discordapp.com/attachments/1291755201363185745/1491806161026941110/a_k_i.jfif?ex=69d90841&is=69d7b6c1&hm=6c1efcfb79debfbfd03afdd1a032d39cda9941269ce1b64b4b837cc0ec95fea6&" alt="profile">
+        <h2>Zhăo sŭméi</h2>
+        <p>Zì'ài shì zuì hǎo de ài</p>
+    </div>
+
+    <div class="card reveal">
+        <h2>🔥 game</h2>
+        <div class="game">
+            <span>ไอไก่</span>
+            <span>eat</span>
+            <span>sleep</span>
+            <span>Roblox</span>
+        </div>
+    </div>
+
+    <div class="card contact reveal">
+        <h2>📱 Contact</h2>
+        <p><a href="https://discord.gg/QqrGfDNq9A">Discord:</a></p>
+        <p><a href="https://www.instagram.com/xipxcvb_kw/">Instagram:</a></p>
+        <p><a href="https://www.tiktok.com/@pordpran_qvw">TikTok:</a></p>
+    </div>
+
+</div>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+
+window.addEventListener('scroll', () => {
+    const windowHeight = window.innerHeight;
+
+    reveals.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if(top < windowHeight - 100){
+            el.classList.add('show');
+        }
+    });
+});
+
+// particles
+for(let i=0;i<20;i++){
+    let p = document.createElement('div');
+    p.className='particle';
+    p.style.left = Math.random()*100+'vw';
+    p.style.animationDuration = (5+Math.random()*5)+'s';
+    document.body.appendChild(p);
+}
+</script>
+
+</body>
+</html>
